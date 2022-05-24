@@ -1,4 +1,5 @@
 import sys
+import os
 
 def print_usage():
     print("Usage:")
@@ -10,6 +11,13 @@ if __name__ == "__main__":
         print_usage()
         exit(1)
 
-    with open(sys.argv[1]) as input:
-        for line in input:
-            print(f"{line.strip()}")
+    if (sys.argv[1] == '1'):
+        print(f"Counting '{sys.argv[3]}' in {os.path.join(os.getcwd(), sys.argv[2])}")
+
+        occurrences = 0
+        with open(sys.argv[2]) as input_file:
+            for line in input_file:
+                if line.find(sys.argv[3]) != -1:
+                    occurrences += 1
+
+        print(f"There are {occurrences} occurrences")
